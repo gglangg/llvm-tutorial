@@ -12,7 +12,7 @@ opt -dot-cfg file.ll -disable-output
 ```
 - 會生成一個檔案叫.main.dot 這個檔案為digraph描述檔 可用macos-tool graphviz視覺化，基本上就是一個流程圖。
 
-## 3. 用llvm-tool llc 將IR 轉為 target assembly code
+## 3. 用llvm-tool llc(LLVM Static Compiler) 將IR 轉為 target assembly code
 * target 可以為
     * x86
     * arm
