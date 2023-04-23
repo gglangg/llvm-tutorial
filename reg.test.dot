@@ -1,0 +1,66 @@
+digraph "Region Graph for 'test' function" {
+	label="Region Graph for 'test' function";
+
+	Node0xd9c6b0 [shape=record,label="{%2}"];
+	Node0xd9c6b0 -> Node0xd9e9b0;
+	Node0xd9e9b0 [shape=record,label="{%8}"];
+	Node0xd9e9b0 -> Node0xd9ea70;
+	Node0xd9e9b0 -> Node0xd9ead0;
+	Node0xd9ea70 [shape=record,label="{%12}"];
+	Node0xd9ea70 -> Node0xd9ebe0;
+	Node0xd9ebe0 [shape=record,label="{%13}"];
+	Node0xd9ebe0 -> Node0xd9ec40;
+	Node0xd9ebe0 -> Node0xd9eca0;
+	Node0xd9ec40 [shape=record,label="{%17}"];
+	Node0xd9ec40 -> Node0xd9ee50;
+	Node0xd9ee50 [shape=record,label="{%29}"];
+	Node0xd9ee50 -> Node0xd9ebe0[constraint=false];
+	Node0xd9eca0 [shape=record,label="{%32}"];
+	Node0xd9eca0 -> Node0xd9eeb0;
+	Node0xd9eeb0 [shape=record,label="{%33}"];
+	Node0xd9eeb0 -> Node0xd9e9b0[constraint=false];
+	Node0xd9ead0 [shape=record,label="{%36}"];
+	Node0xd9ead0 -> Node0xd9ef10;
+	Node0xd9ef10 [shape=record,label="{%37}"];
+	Node0xd9ef10 -> Node0xd9f380;
+	Node0xd9ef10 -> Node0xd9f3e0;
+	Node0xd9f380 [shape=record,label="{%41}"];
+	Node0xd9f380 -> Node0xd9f440;
+	Node0xd9f440 [shape=record,label="{%50}"];
+	Node0xd9f440 -> Node0xd9ef10[constraint=false];
+	Node0xd9f3e0 [shape=record,label="{%53}"];
+	colorscheme = "paired12"
+        subgraph cluster_0xd793d0 {
+          label = "";
+          style = filled;
+          color = 1
+          subgraph cluster_0xd9c800 {
+            label = "";
+            style = filled;
+            color = 3
+            subgraph cluster_0xd9c700 {
+              label = "";
+              style = filled;
+              color = 5
+              Node0xd9ebe0;
+              Node0xd9ec40;
+              Node0xd9ee50;
+            }
+            Node0xd9e9b0;
+            Node0xd9ea70;
+            Node0xd9eca0;
+            Node0xd9eeb0;
+          }
+          subgraph cluster_0xd9c780 {
+            label = "";
+            style = filled;
+            color = 3
+            Node0xd9ef10;
+            Node0xd9f380;
+            Node0xd9f440;
+          }
+          Node0xd9c6b0;
+          Node0xd9ead0;
+          Node0xd9f3e0;
+        }
+}

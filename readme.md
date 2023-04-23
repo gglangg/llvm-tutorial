@@ -6,11 +6,11 @@ clang -S -emit-llvm hello.c -o fill.ll
 ```
 - 可以將hello.c 轉成llvm ir(intermediate representation)
 
-## 2. 用llvm-tool **Dot (graph Description language)** 將 file.ll 做optimization
+## 2. 用llvm-tool **Dot (graph Description language)** 生成file.ll的流程圖 
+```js
+opt -dot-cfg file.ll -disable-output //cfg stand for control flow graph
 ```
-opt -dot-cfg file.ll -disable-output
-```
-- 會生成一個檔案叫.main.dot 這個檔案為digraph描述檔 可用macos-tool graphviz視覺化，基本上就是一個流程圖。
+- 會生成一個檔案叫.main.dot 這個檔案為digraph描述檔 可用graphviz視覺化，基本上就是一個流程圖。
 
 ## 3. 用llvm-tool llc(LLVM Static Compiler) 將IR 轉為 target assembly code
 * target 可以為
@@ -19,7 +19,7 @@ opt -dot-cfg file.ll -disable-output
     * mips
     * etc
 ```
-llc file.ll --march=x86 -o file.x86
+llc file.ll -march=x86 -o file.x86
 ```
 - 其中march唸作 **m arch**
 
@@ -46,15 +46,31 @@ sudo apt install graphviz
 ```
 ## 2. 視覺化
 -
-    ```
-    clang -S -emit-llvm file.c -o file.ll
+    ```js
+    clang -S -emit-llvm file.c -o file.ll 
+    
+    - opt -dot-cfg file.ll //會顯示basic block裡的IR
+    //or
+    - opt -dot-cfg-only file.ll // 只會顯示流程
+    //or
+    - opt -dot-dom-only file.ll // dom stand for Dominator Tree
+    
+    // 還有很多各種視覺化的工具 可以在cmd中使用
+    opt --help | grep dot
+    // 來查看所有的指令參數
     ```
 -
-    ```
-    dot -Tpdf .test.dot -o test.pdf
+    ```js
+    dot -Tpdf .test.dot -o test.pdf //test是file.c裡的一個func，-Tpdf也可以是-Tpng
     ```
     這行會將.test.dot這個graph description轉成pdf，如下
-    ![alt text](./source/ll.png "Title")
+    - opt -dot-cfg file.ll
+        ![alt text](./source/ll.png "Title")
+    - opt -dot-cfg-only file.ll
+        ![alt text](./source/ll_only.png "Title")
+    - graph介紹
+        - vertex : Basic blocks
+        - edge : Program flow
 
 
 

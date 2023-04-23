@@ -1,0 +1,32 @@
+digraph "CFG for 'test' function" {
+	label="CFG for 'test' function";
+
+	Node0xb816c0 [shape=record,label="{%2:\l  %3 = alloca i32**, align 8\l  %4 = alloca i32, align 4\l  %5 = alloca i32, align 4\l  %6 = alloca i32, align 4\l  %7 = alloca i32, align 4\l  store i32** %0, i32*** %3, align 8\l  store i32 %1, i32* %4, align 4\l  store i32 0, i32* %5, align 4\l  br label %8\l}"];
+	Node0xb816c0 -> Node0xb81af0;
+	Node0xb81af0 [shape=record,label="{%8:\l8:                                                \l  %9 = load i32, i32* %5, align 4\l  %10 = load i32, i32* %4, align 4\l  %11 = icmp slt i32 %9, %10\l  br i1 %11, label %12, label %36\l|{<s0>T|<s1>F}}"];
+	Node0xb81af0:s0 -> Node0xb81800;
+	Node0xb81af0:s1 -> Node0xb81cd0;
+	Node0xb81800 [shape=record,label="{%12:\l12:                                               \l  store i32 0, i32* %6, align 4\l  br label %13\l}"];
+	Node0xb81800 -> Node0xb81de0;
+	Node0xb81de0 [shape=record,label="{%13:\l13:                                               \l  %14 = load i32, i32* %6, align 4\l  %15 = load i32, i32* %5, align 4\l  %16 = icmp slt i32 %14, %15\l  br i1 %16, label %17, label %32\l|{<s0>T|<s1>F}}"];
+	Node0xb81de0:s0 -> Node0xb81fc0;
+	Node0xb81de0:s1 -> Node0xb82010;
+	Node0xb81fc0 [shape=record,label="{%17:\l17:                                               \l  %18 = load i32, i32* %5, align 4\l  %19 = load i32, i32* %6, align 4\l  %20 = mul nsw i32 %18, %19\l  %21 = load i32**, i32*** %3, align 8\l  %22 = load i32, i32* %5, align 4\l  %23 = sext i32 %22 to i64\l  %24 = getelementptr inbounds i32*, i32** %21, i64 %23\l  %25 = load i32*, i32** %24, align 8\l  %26 = load i32, i32* %6, align 4\l  %27 = sext i32 %26 to i64\l  %28 = getelementptr inbounds i32, i32* %25, i64 %27\l  store i32 %20, i32* %28, align 4\l  br label %29\l}"];
+	Node0xb81fc0 -> Node0xb82590;
+	Node0xb82590 [shape=record,label="{%29:\l29:                                               \l  %30 = load i32, i32* %6, align 4\l  %31 = add nsw i32 %30, 1\l  store i32 %31, i32* %6, align 4\l  br label %13\l}"];
+	Node0xb82590 -> Node0xb81de0;
+	Node0xb82010 [shape=record,label="{%32:\l32:                                               \l  br label %33\l}"];
+	Node0xb82010 -> Node0xb82a00;
+	Node0xb82a00 [shape=record,label="{%33:\l33:                                               \l  %34 = load i32, i32* %5, align 4\l  %35 = add nsw i32 %34, 1\l  store i32 %35, i32* %5, align 4\l  br label %8\l}"];
+	Node0xb82a00 -> Node0xb81af0;
+	Node0xb81cd0 [shape=record,label="{%36:\l36:                                               \l  store i32 0, i32* %7, align 4\l  br label %37\l}"];
+	Node0xb81cd0 -> Node0xb82ce0;
+	Node0xb82ce0 [shape=record,label="{%37:\l37:                                               \l  %38 = load i32, i32* %7, align 4\l  %39 = load i32, i32* %4, align 4\l  %40 = icmp slt i32 %38, %39\l  br i1 %40, label %41, label %53\l|{<s0>T|<s1>F}}"];
+	Node0xb82ce0:s0 -> Node0xb82ec0;
+	Node0xb82ce0:s1 -> Node0xb82f10;
+	Node0xb82ec0 [shape=record,label="{%41:\l41:                                               \l  %42 = load i32**, i32*** %3, align 8\l  %43 = load i32, i32* %7, align 4\l  %44 = sext i32 %43 to i64\l  %45 = getelementptr inbounds i32*, i32** %42, i64 %44\l  %46 = load i32*, i32** %45, align 8\l  %47 = load i32, i32* %7, align 4\l  %48 = sext i32 %47 to i64\l  %49 = getelementptr inbounds i32, i32* %46, i64 %48\l  store i32 1, i32* %49, align 4\l  br label %50\l}"];
+	Node0xb82ec0 -> Node0xb83320;
+	Node0xb83320 [shape=record,label="{%50:\l50:                                               \l  %51 = load i32, i32* %7, align 4\l  %52 = add nsw i32 %51, 1\l  store i32 %52, i32* %7, align 4\l  br label %37\l}"];
+	Node0xb83320 -> Node0xb82ce0;
+	Node0xb82f10 [shape=record,label="{%53:\l53:                                               \l  ret void\l}"];
+}
