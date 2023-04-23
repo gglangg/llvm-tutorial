@@ -2,7 +2,7 @@
 ## 1. 使用clang做parsing
 
 ```
-clang -S -emit-llvm hello.c -o fill.ll
+clang -S -emit-llvm file.c -o file.ll
 ```
 - 可以將hello.c 轉成llvm ir(intermediate representation)
 
@@ -71,6 +71,33 @@ sudo apt install graphviz
     - graph介紹
         - vertex : Basic blocks
         - edge : Program flow
+
+# Introduction to LLVM Passes
+## Passes可以當作是IR input到opt時，opt會分成很多個階段，而每個階段就是一個pass
+![alt text](./source/llvm_pass.png "Title")
+
+## LLVM大致有以下passes種類
+- Loop Pass
+- Function Pass
+- Module Pass
+- Call Graph SCC Pass
+- Region Pass
+- Machine Function Pass
+
+Example:
+- Analysis Examples:
+  - Range Analysis 如分析for loop的range
+  - Scalar Evolution 如induction variable
+  - Dominator Tree
+  - ![alt text](./source/Dominator_tree.png "Title")
+- Transformations Examples
+  - Dead Code Elimination
+  - ![alt text](./source/dead_code.png "Title")
+
+  - Constant Propagation
+  - ![alt text](./source/constant_propagation.png "Title")
+  - Loop-invariant code motion 將迴圈內部不受循環影響的語句或表達式移到循環體之外，和此條目提到的迴圈不變式無關係。
+  - ![alt text](./source/loop_invariant.png "Title")
 
 
 

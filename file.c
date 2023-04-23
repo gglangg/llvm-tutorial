@@ -17,5 +17,7 @@ void test(int** outer,int N){
 
 int main(void) {
     int T=4;
-    return callee(&T);    
+    T = callee(&T);
+    printf("%d",T);
+    return T;    
 }

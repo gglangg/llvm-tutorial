@@ -1,5 +1,0 @@
-digraph "CFG for 'callee' function" {
-	label="CFG for 'callee' function";
-
-	Node0xb80c60 [shape=record,label="{%1:\l  %2 = alloca i32*, align 8\l  store i32* %0, i32** %2, align 8\l  %3 = load i32*, i32** %2, align 8\l  %4 = load i32, i32* %3, align 4\l  %5 = add nsw i32 %4, 1\l  ret i32 %5\l}"];
-}
