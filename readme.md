@@ -88,18 +88,63 @@ Example:
 - Analysis Examples:
   - Range Analysis 如分析for loop的range
   - Scalar Evolution 如induction variable
-  - Dominator Tree
-  - ![alt text](./source/Dominator_tree.png "Title")
+  - Dominator Tree![alt text](./source/Dominator_tree.png "Title")
 - Transformations Examples
   - Dead Code Elimination
-  - ![alt text](./source/dead_code.png "Title")
-
+  ![alt text](./source/dead_code.png "Title")
   - Constant Propagation
-  - ![alt text](./source/constant_propagation.png "Title")
+  ![alt text](./source/constant_propagation.png "Title")
   - Loop-invariant code motion 將迴圈內部不受循環影響的語句或表達式移到循環體之外，和此條目提到的迴圈不變式無關係。
-  - ![alt text](./source/loop_invariant.png "Title")
+  ![alt text](./source/loop_invariant.png "Title")
 
+# Writing an LLVM Analysis (part 1)
+## Project Structure
+```
+├── CMakeLists.txt
+├── examples
+│   └── foo.ll
+├── include
+│   └── AddConst.h
+├── lib
+│   ├── AddConstAnalysis.cpp
+│   ├── AddConstPass.cpp
+│   ├── AddConstPlugin.cpp
+│   └── CMakeLists.txt
+├── README.md
+└── tool
+    ├── CMakeLists.txt
+    └── Main.cpp
+```
+## 步驟
+- 修改CMakeList.txt檔裡的 **LLVM_INSTALL_DIR**
+- Config
+    ```sh
+    make -B build/ .
+    ```
+- Build : 
+    ```sh
+    cd build
+    cmake --build .
+    ```
+- build後的結果會在build/lib下，檔名為libAddConst.so
 
+- 鍊結 build/lib/libAddConst.so 給opt，也可以說是將libAddConst.so當作plugin加入llvm passes，然後用examples/foo.ll當作範例
+    ```ps
+    /usr/lib/llvm-10/bin/opt \
+    -load-pass-plugin build/lib/libAddConst.so \
+    -passes="print<add-const>" \
+    -disable-output examples/foo.ll 
+    ```
+    ```console 
+    output:
+    =============================================
+    || foo ||
+    =============================================
+    %c = add i32 1, 2
+    %d = add i32 3, 4
+    =============================================
+    ```
+這個練習主要是讓我熟悉plugin的基本操作，更加理解passes的客製化流程。還有一些make的用法。
 
-
-
+Note :
+- 在vscode裡，想加入include pass的話，要在根目錄新增.vscode/c_cpp_properties.json，並且將include的資訊放在c_cpp_properties.json裡。
