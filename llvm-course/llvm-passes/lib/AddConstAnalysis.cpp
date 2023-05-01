@@ -85,6 +85,7 @@ namespace addconst {
         OS << "===================\n";
         OS << "in PreservedAnalyses AddModuleIrPrinter\n";
         OS << "===================\n";
+        OS << M.getName() << "\n";
         for (auto& function : M) {
             OS << function.getName() << "\n";
             if (!function.isDeclaration()) {

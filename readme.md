@@ -149,25 +149,31 @@ Example:
 Note :
 - 在vscode裡，想加入include pass的話，要在根目錄新增.vscode/c_cpp_properties.json，並且將include的資訊放在c_cpp_properties.json裡。
 
-<!-- 
+
 # Assign-practice
 寫一個將IR輸出的pass
 - idea:在IR中，大致上可以分成
     - module
     - basic block
     - instruction
-- code
-    ```cpp
-    for (auto& function : *module) {
-    if (!function.isDeclaration()) {
-      // 遍歷函式中的基本區塊
-      for (auto& basicBlock : function) {
-        // 遍歷基本區塊中的指令
-        for (auto& instruction : basicBlock) {
-          // 在此os出instruction
-        }
-      }
-    }
-    ``` -->
+- 加入
+    - AddConst.h
+        - struct AddModuleAnalysis : public llvm::AnalysisInfoMixin<AddModuleAnalysis>
+        - struct AddModuleIrPrinter : public llvm::PassInfoMixin<AddModuleIrPrinter>
+    - AddConstPlugin.cpp 註冊pass
+        - PB.registerAnalysisRegistrationCallback(registerModuleAnalyses)
+        - PB.registerPipelineParsingCallback(registerModulePipeline)
+    - AddConstAnalysis.cpp
+        - PreservedAnalyses AddModuleIrPrinter::run(Module &M,ModuleAnalysisManager &MAM) 
+        - AddModuleAnalysis::Result AddModuleAnalysis::run(Module &M,ModuleAnalysisManager &MAM)
+- 流程
+    - 分析模塊
+        這個步驟將ir指令加入到AddInsts裡
+    - PreservedAnalyses
+        對分析後的結果做處理
+- Note:
+    - 對register callback的參數(func)不熟，需更熟悉流程。
+- 結果
+![alt text](./source/print%3Cir%3E.png "Title")
 
 # Writing an LLVM Transformation
