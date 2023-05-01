@@ -119,7 +119,7 @@ Example:
 - 修改CMakeList.txt檔裡的 **LLVM_INSTALL_DIR**
 - Config
     ```sh
-    make -B build/ .
+    cmake -B build/ .
     ```
 - Build : 
     ```sh
@@ -148,3 +148,26 @@ Example:
 
 Note :
 - 在vscode裡，想加入include pass的話，要在根目錄新增.vscode/c_cpp_properties.json，並且將include的資訊放在c_cpp_properties.json裡。
+
+<!-- 
+# Assign-practice
+寫一個將IR輸出的pass
+- idea:在IR中，大致上可以分成
+    - module
+    - basic block
+    - instruction
+- code
+    ```cpp
+    for (auto& function : *module) {
+    if (!function.isDeclaration()) {
+      // 遍歷函式中的基本區塊
+      for (auto& basicBlock : function) {
+        // 遍歷基本區塊中的指令
+        for (auto& instruction : basicBlock) {
+          // 在此os出instruction
+        }
+      }
+    }
+    ``` -->
+
+# Writing an LLVM Transformation
