@@ -176,4 +176,11 @@ Note :
 - 結果
 ![alt text](./source/print%3Cir%3E.png "Title")
 
-# Writing an LLVM Transformation
+# Writing a LLVM-based tool
+大致上在講如何用剛剛自己編譯的./build/bin/addconst 這個executable file(可執行檔)達成以上的目的，而能達成以上目的的關鍵在./tool/main.cpp。
+``` bash
+#在 ./build資料夾下執行
+bin/addconst ../examples/foo.ll -o ../examples/bar.ll
+```
+這個意思是，原本我們使用cmd中opt這個指令，但在這裡我們自己寫了一個cpp程式，並建構可執行檔取代opt，且他們在目前的功能之下，有著同樣的效果。
+
