@@ -184,3 +184,23 @@ bin/addconst ../examples/foo.ll -o ../examples/bar.ll
 ```
 這個意思是，原本我們使用cmd中opt這個指令，但在這裡我們自己寫了一個cpp程式，並建構可執行檔取代opt，且他們在目前的功能之下，有著同樣的效果。
 
+# LLVM Loops
+## 此章節大致上講解了一個用來分析loop的工具，lif(https://github.com/lac-dcc/lif)。
+## loop的架構大致可以分為
+- Header（迴圈頭）：迴圈的頭（header）是迴圈結構的進入點，也是迴圈的起始點。它通常是迴圈的第一個基本塊（basic block），也是迴圈控制流的進入點。所有的迴圈迭代都從頭部開始。
+
+- Latch（迴圈尾）：迴圈的尾（latch）是迴圈結構的結束點，也是迴圈的迭代點。它通常是迴圈的最後一個基本塊，迴圈控制流從頭部進入並最終回到尾部。在每次迭代結束時，控制流都會回到迴圈尾，並根據迴圈條件進行決策。
+
+- Exiting Blocks（退出塊）：退出塊是指從迴圈中退出的基本塊。在迴圈中，可能會有多個基本塊可以退出迴圈，而這些基本塊被稱為退出塊。當迴圈條件不滿足時，控制流會離開迴圈並進入這些退出塊。退出塊通常是在迴圈尾部之外的基本塊。
+
+latch跟exiting block有點像，舉例來說
+```
+do{
+    if( i==8 )break;
+    i++;
+}while(i<10)
+```
+- if( i==8 )break ---> Exiting Blocks
+- while(i<10) ---> Latch
+
+# Region Analysis
