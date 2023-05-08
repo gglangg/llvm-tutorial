@@ -98,7 +98,7 @@ std::string SignatureRecover::getBasicTypeStr(unsigned DwarfTag){
 }
 
 void SignatureRecover::analyzeDebugType(DIType* DIT){
-  if(DIBasicType* Basic = dyn_cast<DIBasicType>(DIT)){
+  if(DIBasicType* Basic = dyn_cast<DIBasicType>(DIT)){  // dyn_cast<to>(from) 將DIT轉換成DIBasicType
     errs() << getBasicTypeStr(Basic->getEncoding());
   }
   

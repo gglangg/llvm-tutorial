@@ -203,4 +203,93 @@ do{
 - if( i==8 )break ---> Exiting Blocks
 - while(i<10) ---> Latch
 
-# Region Analysis
+# LLVM Metadata
+## intro
+LLVM metadata是一種將附加信息附加到LLVM IR（Intermediate Representation）代碼的方法。這些元數據可以用於註釋代碼的各個方面，例如源位置(~/Desktop/file.c)、調試信息、優化提示等等。
+<!-- ## 表示方法
+```
+define i32 @foo(i32 %x) {
+  ; ...
+  ret i32 %result
+}
+
+!0 = metadata !{inlinehint}
+```
+也可以是named metadata
+```
+!IDILocalVariable (name: "argc", arg: 1, scope: !34, file: !1,
+line: 11, type: !10)
+``` -->
+## metadata format
+
+- !{\<data>}：這是最簡單的元數據格式，其中 \<data> 可以是任何 LLVM IR 中有效的常量或常量表達式。例如 ```!{i32 42}``` 表示一個包含整數值 42 的元數據節點。
+
+- !{\<tag>, \<data>}：這種格式將一個標記（tag）與一個數據（data）相關聯。標記可以是預定義的字符串，例如“dbg”、“nonnull”等，也可以是自定義字符串。數據可以是任何 LLVM IR 中有效的常量或常量表達式。例如， ```!{nonnull, i32* %ptr}``` ，nonnull 是標記，i32* %ptr 是與之相關聯的數據。它表示 %ptr 是一個非空指針，可以用於提高編譯器優化的精度。
+
+
+- !{\<tag>, \<data1>, \<data2>, ...}：這種格式允許將多個數據與同一個標記相關聯。例如，```!{dbg, i32 3, i32 4, i32 5}``` 表示一個調試信息元數據節點，其中標記為“dbg”，數據包括三個整數值。
+
+- !\<id>：這種格式是對其他元數據節點的引用。例如， ```!0``` 表示對 ID 為 0 的元數據節點的引用。
+
+- !\<id> = metadata \<type> \<data>：這種格式定義了一個新的元數據節點，其 ID 為 <id>。類型（\<type>）指定了元數據的類型，例如``` !DILocation``` 表示調試位置信息。數據（\<data>）是與元數據節點相關聯的實際值。例如，``` !5 = metadata !{i32 0, i32 0, metadata !6, metadata !7}``` 表示一個元數據節點，其 ID 為 5，類型為 ```!DILocation``` ，數據包括兩個整數值和兩個元數據引用。
+
+- example : *Name Metadata*
+    ```llvm
+    !0 = !{!"Zero"}
+    !1 = !{!"One"}
+    !name = !{!0,!1}
+    ```
+
+## Metadata vs Type Metadata
+- Metadata \
+    metadata 用於描述 LLVM IR 中的指令，例如標記非空指針（nonnull），或者在調用函數時傳遞的參數屬性（attributes）。metadata 通常是一個指向元數據節點的指針，該節點可以包含標記和相關聯的數據。
+    ```cpp
+    define void @foo(i32* %ptr) !nonnull !1 {
+        ; ...
+    }
+    !1 = !{nonnull}
+    ```
+    在這個範例中，!nonnull 是一個 metadata 節點，用於標記 @foo 函數的第一個參數 %ptr 是一個非空指針。
+- Type metadata \
+    type metadata 用於描述 LLVM IR 中的類型。*每個類型都有一個唯一的 type metadata*。type metadata 可以包含類型的名稱、大小、對齊方式以及其他類型特定的屬性。在 LLVM IR 中， type metadata 節點通常是指向一個具體類型的指針，例如 *i32、float 或 struct*。這些 type metadata 可以用於定義和操作不同的數據類型，例如在定義全局變量時，需要指定變量的類型，或者在函數聲明中指定參數和返回值的類型。
+    ```cpp
+    %struct.Person = type { i8* , i32 }
+    define void @foo(%struct.Person* %person) {
+        ; ...
+    }
+    ```
+    上面這段翻成cpp會變成以下
+    ```cpp
+    #include <stdio.h>
+    struct Person {
+        char* name; // 8bit 對應到 i8*
+        int age; // 32bit 對應到 i32
+    };
+    void foo(Person* person) {
+        ; ...
+    }
+    ```
+    在這個範例中，%struct.Person 是一個結構體的類型，它包含一個指向 i8 類型的指針和一個 i32 類型的整數。 type metadata 節點 %struct.Person 用於描述這個類型，並且可以在定義全局變量或函數聲明時使用。在函數定義中，%struct.Person* 是一個指向結構體的指針，用於操作這個類型的數據。
+
+- 整理:
+    - metadata
+        - is not a value
+        - does not have a type
+    - type metadata
+        - reference by function calls
+## Source Code Class for handling metadata
+- DICompileUnit：用於描述源文件的編譯信息。
+- DISubprogram：用於描述函數的調試信息，包括函數名稱、參數、局部變量等。
+- DILexicalBlock：用於描述代碼塊（block）的調試信息，即源代碼中的花括號 {} 包圍的區域。
+- DILocalVariable：用於描述函數中的局部變量的調試信息，包括變量名稱、類型等。
+- DIGlobalVariable：用於描述全局變量的調試信息，包括變量名稱、類型等。
+- DIExpression：用於描述調試器需要執行的表達式，以計算一個變量的值，例如取地址、加減運算等。
+- C++ example: 
+    ```cpp
+    // 定義 DISubprogram 元數據
+    DISubroutineType *funcType = builder.createSubroutineType(builder.getOrCreateTypeArray(None));
+    DISubprogram *func = builder.createFunction(compileUnit, "foo", "", file, 1, funcType, false, true, 1);
+    ```
+
+
+# Recovering Source Information
