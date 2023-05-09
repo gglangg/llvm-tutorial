@@ -10,7 +10,7 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 # 1. VERIFY LLVM INSTALLATION DIR
 #===============================================================================
 # Set this to a valid LLVM installation dir:
-set(LLVM_INSTALL_DIR "" CACHE PATH "LLVM installation directory")
+set(LLVM_INSTALL_DIR "/usr/lib/llvm-10") # modified
 
 # A bit of a sanity checking:
 set(LLVM_INSTALL_INCLUDE "${LLVM_INSTALL_DIR}/include/llvm")
@@ -19,7 +19,7 @@ message(FATAL_ERROR
     " LLVM_INSTALL_INCLUDE (${LLVM_INSTALL_INCLUDE}) is invalid.")
 endif()
 
-set(LLVM_INSTALL_CMAKE "${LLVM_INSTALL_DIR}/lib/cmake/llvm/LLVMConfig.cmake")
+set(LLVM_INSTALL_CMAKE "${LLVM_INSTALL_DIR}/lib/cmake/llvm/LLVMConfig.cmake") # ./usr/lib/llvm-10/lib/cmake/llvm/LLVMConfig.cmake
 if(NOT EXISTS "${LLVM_INSTALL_CMAKE}")
 message(FATAL_ERROR
     " LLVM_INSTALL_CMAKE (${LLVM_INSTALL_CMAKE}) is invalid.")

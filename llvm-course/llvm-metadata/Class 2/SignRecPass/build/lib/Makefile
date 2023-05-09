@@ -51,7 +51,7 @@ EQUALS = =
 CMAKE_SOURCE_DIR = "/home/cluster/Desktop/PLLAB/llvm-tutorial/llvm-course/llvm-metadata/Class 2/SignRecPass"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/home/cluster/Desktop/PLLAB/llvm-tutorial/llvm-course/llvm-metadata/Class 2/SignRecPass"
+CMAKE_BINARY_DIR = "/home/cluster/Desktop/PLLAB/llvm-tutorial/llvm-course/llvm-metadata/Class 2/SignRecPass/build"
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,14 +80,14 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd "/home/cluster/Desktop/PLLAB/llvm-tutorial/llvm-course/llvm-metadata/Class 2/SignRecPass" && $(CMAKE_COMMAND) -E cmake_progress_start "/home/cluster/Desktop/PLLAB/llvm-tutorial/llvm-course/llvm-metadata/Class 2/SignRecPass/CMakeFiles" "/home/cluster/Desktop/PLLAB/llvm-tutorial/llvm-course/llvm-metadata/Class 2/SignRecPass/lib/CMakeFiles/progress.marks"
-	cd "/home/cluster/Desktop/PLLAB/llvm-tutorial/llvm-course/llvm-metadata/Class 2/SignRecPass" && $(MAKE) -f CMakeFiles/Makefile2 lib/all
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/cluster/Desktop/PLLAB/llvm-tutorial/llvm-course/llvm-metadata/Class 2/SignRecPass/CMakeFiles" 0
+	cd "/home/cluster/Desktop/PLLAB/llvm-tutorial/llvm-course/llvm-metadata/Class 2/SignRecPass/build" && $(CMAKE_COMMAND) -E cmake_progress_start "/home/cluster/Desktop/PLLAB/llvm-tutorial/llvm-course/llvm-metadata/Class 2/SignRecPass/build/CMakeFiles" "/home/cluster/Desktop/PLLAB/llvm-tutorial/llvm-course/llvm-metadata/Class 2/SignRecPass/build/lib/CMakeFiles/progress.marks"
+	cd "/home/cluster/Desktop/PLLAB/llvm-tutorial/llvm-course/llvm-metadata/Class 2/SignRecPass/build" && $(MAKE) -f CMakeFiles/Makefile2 lib/all
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/cluster/Desktop/PLLAB/llvm-tutorial/llvm-course/llvm-metadata/Class 2/SignRecPass/build/CMakeFiles" 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd "/home/cluster/Desktop/PLLAB/llvm-tutorial/llvm-course/llvm-metadata/Class 2/SignRecPass" && $(MAKE) -f CMakeFiles/Makefile2 lib/clean
+	cd "/home/cluster/Desktop/PLLAB/llvm-tutorial/llvm-course/llvm-metadata/Class 2/SignRecPass/build" && $(MAKE) -f CMakeFiles/Makefile2 lib/clean
 .PHONY : clean
 
 # The main clean target
@@ -97,22 +97,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd "/home/cluster/Desktop/PLLAB/llvm-tutorial/llvm-course/llvm-metadata/Class 2/SignRecPass" && $(MAKE) -f CMakeFiles/Makefile2 lib/preinstall
+	cd "/home/cluster/Desktop/PLLAB/llvm-tutorial/llvm-course/llvm-metadata/Class 2/SignRecPass/build" && $(MAKE) -f CMakeFiles/Makefile2 lib/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd "/home/cluster/Desktop/PLLAB/llvm-tutorial/llvm-course/llvm-metadata/Class 2/SignRecPass" && $(MAKE) -f CMakeFiles/Makefile2 lib/preinstall
+	cd "/home/cluster/Desktop/PLLAB/llvm-tutorial/llvm-course/llvm-metadata/Class 2/SignRecPass/build" && $(MAKE) -f CMakeFiles/Makefile2 lib/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd "/home/cluster/Desktop/PLLAB/llvm-tutorial/llvm-course/llvm-metadata/Class 2/SignRecPass" && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd "/home/cluster/Desktop/PLLAB/llvm-tutorial/llvm-course/llvm-metadata/Class 2/SignRecPass/build" && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 lib/CMakeFiles/SignatureRecover.dir/rule:
-	cd "/home/cluster/Desktop/PLLAB/llvm-tutorial/llvm-course/llvm-metadata/Class 2/SignRecPass" && $(MAKE) -f CMakeFiles/Makefile2 lib/CMakeFiles/SignatureRecover.dir/rule
+	cd "/home/cluster/Desktop/PLLAB/llvm-tutorial/llvm-course/llvm-metadata/Class 2/SignRecPass/build" && $(MAKE) -f CMakeFiles/Makefile2 lib/CMakeFiles/SignatureRecover.dir/rule
 .PHONY : lib/CMakeFiles/SignatureRecover.dir/rule
 
 # Convenience name for target.
@@ -122,7 +122,7 @@ SignatureRecover: lib/CMakeFiles/SignatureRecover.dir/rule
 
 # fast build rule for target.
 SignatureRecover/fast:
-	cd "/home/cluster/Desktop/PLLAB/llvm-tutorial/llvm-course/llvm-metadata/Class 2/SignRecPass" && $(MAKE) -f lib/CMakeFiles/SignatureRecover.dir/build.make lib/CMakeFiles/SignatureRecover.dir/build
+	cd "/home/cluster/Desktop/PLLAB/llvm-tutorial/llvm-course/llvm-metadata/Class 2/SignRecPass/build" && $(MAKE) -f lib/CMakeFiles/SignatureRecover.dir/build.make lib/CMakeFiles/SignatureRecover.dir/build
 .PHONY : SignatureRecover/fast
 
 SignatureRecover.o: SignatureRecover.cpp.o
@@ -131,7 +131,7 @@ SignatureRecover.o: SignatureRecover.cpp.o
 
 # target to build an object file
 SignatureRecover.cpp.o:
-	cd "/home/cluster/Desktop/PLLAB/llvm-tutorial/llvm-course/llvm-metadata/Class 2/SignRecPass" && $(MAKE) -f lib/CMakeFiles/SignatureRecover.dir/build.make lib/CMakeFiles/SignatureRecover.dir/SignatureRecover.cpp.o
+	cd "/home/cluster/Desktop/PLLAB/llvm-tutorial/llvm-course/llvm-metadata/Class 2/SignRecPass/build" && $(MAKE) -f lib/CMakeFiles/SignatureRecover.dir/build.make lib/CMakeFiles/SignatureRecover.dir/SignatureRecover.cpp.o
 .PHONY : SignatureRecover.cpp.o
 
 SignatureRecover.i: SignatureRecover.cpp.i
@@ -140,7 +140,7 @@ SignatureRecover.i: SignatureRecover.cpp.i
 
 # target to preprocess a source file
 SignatureRecover.cpp.i:
-	cd "/home/cluster/Desktop/PLLAB/llvm-tutorial/llvm-course/llvm-metadata/Class 2/SignRecPass" && $(MAKE) -f lib/CMakeFiles/SignatureRecover.dir/build.make lib/CMakeFiles/SignatureRecover.dir/SignatureRecover.cpp.i
+	cd "/home/cluster/Desktop/PLLAB/llvm-tutorial/llvm-course/llvm-metadata/Class 2/SignRecPass/build" && $(MAKE) -f lib/CMakeFiles/SignatureRecover.dir/build.make lib/CMakeFiles/SignatureRecover.dir/SignatureRecover.cpp.i
 .PHONY : SignatureRecover.cpp.i
 
 SignatureRecover.s: SignatureRecover.cpp.s
@@ -149,7 +149,7 @@ SignatureRecover.s: SignatureRecover.cpp.s
 
 # target to generate assembly for a file
 SignatureRecover.cpp.s:
-	cd "/home/cluster/Desktop/PLLAB/llvm-tutorial/llvm-course/llvm-metadata/Class 2/SignRecPass" && $(MAKE) -f lib/CMakeFiles/SignatureRecover.dir/build.make lib/CMakeFiles/SignatureRecover.dir/SignatureRecover.cpp.s
+	cd "/home/cluster/Desktop/PLLAB/llvm-tutorial/llvm-course/llvm-metadata/Class 2/SignRecPass/build" && $(MAKE) -f lib/CMakeFiles/SignatureRecover.dir/build.make lib/CMakeFiles/SignatureRecover.dir/SignatureRecover.cpp.s
 .PHONY : SignatureRecover.cpp.s
 
 # Help Target
@@ -175,6 +175,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd "/home/cluster/Desktop/PLLAB/llvm-tutorial/llvm-course/llvm-metadata/Class 2/SignRecPass" && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd "/home/cluster/Desktop/PLLAB/llvm-tutorial/llvm-course/llvm-metadata/Class 2/SignRecPass/build" && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

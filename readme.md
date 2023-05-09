@@ -233,7 +233,7 @@ line: 11, type: !10)
 
 - !\<id> = metadata \<type> \<data>：這種格式定義了一個新的元數據節點，其 ID 為 <id>。類型（\<type>）指定了元數據的類型，例如``` !DILocation``` 表示調試位置信息。數據（\<data>）是與元數據節點相關聯的實際值。例如，``` !5 = metadata !{i32 0, i32 0, metadata !6, metadata !7}``` 表示一個元數據節點，其 ID 為 5，類型為 ```!DILocation``` ，數據包括兩個整數值和兩個元數據引用。
 
-- example : *Name Metadata*
+- example : ***Name Metadata**
     ```llvm
     !0 = !{!"Zero"}
     !1 = !{!"One"}
@@ -251,7 +251,7 @@ line: 11, type: !10)
     ```
     在這個範例中，!nonnull 是一個 metadata 節點，用於標記 @foo 函數的第一個參數 %ptr 是一個非空指針。
 - Type metadata \
-    type metadata 用於描述 LLVM IR 中的類型。*每個類型都有一個唯一的 type metadata*。type metadata 可以包含類型的名稱、大小、對齊方式以及其他類型特定的屬性。在 LLVM IR 中， type metadata 節點通常是指向一個具體類型的指針，例如 *i32、float 或 struct*。這些 type metadata 可以用於定義和操作不同的數據類型，例如在定義全局變量時，需要指定變量的類型，或者在函數聲明中指定參數和返回值的類型。
+    type metadata 用於描述 LLVM IR 中的類型。**每個類型都有一個唯一的 type metadata**。type metadata 可以包含類型的名稱、大小、對齊方式以及其他類型特定的屬性。在 LLVM IR 中， type metadata 節點通常是指向一個具體類型的指針，例如 **i32、float 或 struct**。這些 type metadata 可以用於定義和操作不同的數據類型，例如在定義全局變量時，需要指定變量的類型，或者在函數聲明中指定參數和返回值的類型。
     ```cpp
     %struct.Person = type { i8* , i32 }
     define void @foo(%struct.Person* %person) {
@@ -293,3 +293,57 @@ line: 11, type: !10)
 
 
 # Recovering Source Information
+
+
+# Tracking Variables in LLVM IR
+## llvm debugging
+Debugging 是一個非常重要的任務，它用於幫助開發人員識別並解決程式碼中的錯誤。這些錯誤可能包括：
+- 編譯錯誤：在將原始程式碼轉換為 LLVM IR 時出現錯誤。
+- 運行時錯誤：在執行 LLVM IR 時出現錯誤。
+- 邏輯錯誤：程式碼的行為不符合預期。
+
+而通常debugging任務需具備以下特性:
+- Should have little impact
+- Unaware of semantics 
+
+    不需要知道source level的語意，因為llvm本來就支援不同種類的語言 
+- Works with any language
+- Compatible with debuggers
+
+    需與傳統machine code level debugger相容，ex. GDB
+    
+    ```GDB 是一個開源的命令行調試器，全稱是 GNU Debugger。它可以用來調試 C、C++、Ada、Objective-C、Fortran 和其他一些程式語言的程式碼，並且支援多種平台，如 Linux、UNIX 和 Windows。```
+
+## Debugger information intrinsics
+在 LLVM 中，Debugger information intrinsics 是一組用於生成調試資訊的指令集。它們是在 LLVM IR 中插入的特殊指令，用於指示調試器在執行程式碼時如何提供相關的調試資訊，例如變數名稱、型別、作用域、源碼行號等等。
+- 使用llvm.dbg當prefix，如
+    - llvm.dbg.declare：
+        用於聲明(declare)一個 **變數** 的 調試資訊(debugging information)，例如變數的名稱、型別、作用域(scope)等等。
+        ``` llvm
+        %var = alloca i32;表示要為一個 i32 型別的變數分配記憶體空間，並將其地址儲存在 %var 中。
+        %dbg = metadata !{i32 123, metadata !"my_var", metadata !DIExpression()}
+        call void @llvm.dbg.declare(metadata !DILocalVariable(%dbg), metadata !DIExpression(), %var)
+        ```
+    - llvm.dbg.value：
+        
+        用於描述一個 **值** 的調試資訊，例如變數的值、類型等等。
+        ```llvm
+        %val = load i32, i32* %ptr;表示要載入（load）一個 i32 型別的值，該值的位置儲存在 %ptr 所指向的記憶體位址中，並將載入的值儲存在 %val 變數中。
+        %dbg = metadata !{i32 456, metadata !"my_val", metadata !DIExpression()}
+        call void @llvm.dbg.value(metadata !DILocalVariable(%dbg), metadata !DIExpression(), %val)
+        ```
+    - llvm.dbg.region.start 和 llvm.dbg.region.end：
+        
+        用於描述一段程式碼區域的調試資訊，例如區域的起始位置、結束位置等等。
+        ```llvm
+        %dbg_start = metadata !{i32 0, i32 0, metadata !DIFile("my_file.c"), metadata !"my_func", i32 1, metadata !{}}
+        call void @llvm.dbg.region.start(%dbg_start)
+        ; code goes here
+        ; code goes here
+        %dbg_end = metadata !{i32 0, i32 0, metadata !DIFile("my_file.c"), metadata !"my_func", i32 2, metadata !{}}
+        call void @llvm.dbg.region.end(%dbg_end)
+        ```
+- 在 ```llvm-tutorial/llvm-course/llvm-metadata/Class 3/TrackingPass``` 此練習中有處理dbg info的程式碼，如被override的llvm::runOnModule()裡有抓取DIlocalVariable。
+
+
+# TBAA Metadata

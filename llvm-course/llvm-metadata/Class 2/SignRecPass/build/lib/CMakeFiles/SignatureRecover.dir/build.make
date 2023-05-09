@@ -46,7 +46,7 @@ EQUALS = =
 CMAKE_SOURCE_DIR = "/home/cluster/Desktop/PLLAB/llvm-tutorial/llvm-course/llvm-metadata/Class 2/SignRecPass"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/home/cluster/Desktop/PLLAB/llvm-tutorial/llvm-course/llvm-metadata/Class 2/SignRecPass"
+CMAKE_BINARY_DIR = "/home/cluster/Desktop/PLLAB/llvm-tutorial/llvm-course/llvm-metadata/Class 2/SignRecPass/build"
 
 # Include any dependencies generated for this target.
 include lib/CMakeFiles/SignatureRecover.dir/depend.make
@@ -58,17 +58,17 @@ include lib/CMakeFiles/SignatureRecover.dir/progress.make
 include lib/CMakeFiles/SignatureRecover.dir/flags.make
 
 lib/CMakeFiles/SignatureRecover.dir/SignatureRecover.cpp.o: lib/CMakeFiles/SignatureRecover.dir/flags.make
-lib/CMakeFiles/SignatureRecover.dir/SignatureRecover.cpp.o: lib/SignatureRecover.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/cluster/Desktop/PLLAB/llvm-tutorial/llvm-course/llvm-metadata/Class 2/SignRecPass/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object lib/CMakeFiles/SignatureRecover.dir/SignatureRecover.cpp.o"
-	cd "/home/cluster/Desktop/PLLAB/llvm-tutorial/llvm-course/llvm-metadata/Class 2/SignRecPass/lib" && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/SignatureRecover.dir/SignatureRecover.cpp.o -c "/home/cluster/Desktop/PLLAB/llvm-tutorial/llvm-course/llvm-metadata/Class 2/SignRecPass/lib/SignatureRecover.cpp"
+lib/CMakeFiles/SignatureRecover.dir/SignatureRecover.cpp.o: ../lib/SignatureRecover.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/cluster/Desktop/PLLAB/llvm-tutorial/llvm-course/llvm-metadata/Class 2/SignRecPass/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object lib/CMakeFiles/SignatureRecover.dir/SignatureRecover.cpp.o"
+	cd "/home/cluster/Desktop/PLLAB/llvm-tutorial/llvm-course/llvm-metadata/Class 2/SignRecPass/build/lib" && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/SignatureRecover.dir/SignatureRecover.cpp.o -c "/home/cluster/Desktop/PLLAB/llvm-tutorial/llvm-course/llvm-metadata/Class 2/SignRecPass/lib/SignatureRecover.cpp"
 
 lib/CMakeFiles/SignatureRecover.dir/SignatureRecover.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/SignatureRecover.dir/SignatureRecover.cpp.i"
-	cd "/home/cluster/Desktop/PLLAB/llvm-tutorial/llvm-course/llvm-metadata/Class 2/SignRecPass/lib" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/cluster/Desktop/PLLAB/llvm-tutorial/llvm-course/llvm-metadata/Class 2/SignRecPass/lib/SignatureRecover.cpp" > CMakeFiles/SignatureRecover.dir/SignatureRecover.cpp.i
+	cd "/home/cluster/Desktop/PLLAB/llvm-tutorial/llvm-course/llvm-metadata/Class 2/SignRecPass/build/lib" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/cluster/Desktop/PLLAB/llvm-tutorial/llvm-course/llvm-metadata/Class 2/SignRecPass/lib/SignatureRecover.cpp" > CMakeFiles/SignatureRecover.dir/SignatureRecover.cpp.i
 
 lib/CMakeFiles/SignatureRecover.dir/SignatureRecover.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/SignatureRecover.dir/SignatureRecover.cpp.s"
-	cd "/home/cluster/Desktop/PLLAB/llvm-tutorial/llvm-course/llvm-metadata/Class 2/SignRecPass/lib" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/cluster/Desktop/PLLAB/llvm-tutorial/llvm-course/llvm-metadata/Class 2/SignRecPass/lib/SignatureRecover.cpp" -o CMakeFiles/SignatureRecover.dir/SignatureRecover.cpp.s
+	cd "/home/cluster/Desktop/PLLAB/llvm-tutorial/llvm-course/llvm-metadata/Class 2/SignRecPass/build/lib" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/cluster/Desktop/PLLAB/llvm-tutorial/llvm-course/llvm-metadata/Class 2/SignRecPass/lib/SignatureRecover.cpp" -o CMakeFiles/SignatureRecover.dir/SignatureRecover.cpp.s
 
 # Object files for target SignatureRecover
 SignatureRecover_OBJECTS = \
@@ -80,8 +80,8 @@ SignatureRecover_EXTERNAL_OBJECTS =
 lib/libSignatureRecover.so: lib/CMakeFiles/SignatureRecover.dir/SignatureRecover.cpp.o
 lib/libSignatureRecover.so: lib/CMakeFiles/SignatureRecover.dir/build.make
 lib/libSignatureRecover.so: lib/CMakeFiles/SignatureRecover.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/home/cluster/Desktop/PLLAB/llvm-tutorial/llvm-course/llvm-metadata/Class 2/SignRecPass/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX shared module libSignatureRecover.so"
-	cd "/home/cluster/Desktop/PLLAB/llvm-tutorial/llvm-course/llvm-metadata/Class 2/SignRecPass/lib" && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/SignatureRecover.dir/link.txt --verbose=$(VERBOSE)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/home/cluster/Desktop/PLLAB/llvm-tutorial/llvm-course/llvm-metadata/Class 2/SignRecPass/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX shared module libSignatureRecover.so"
+	cd "/home/cluster/Desktop/PLLAB/llvm-tutorial/llvm-course/llvm-metadata/Class 2/SignRecPass/build/lib" && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/SignatureRecover.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
 lib/CMakeFiles/SignatureRecover.dir/build: lib/libSignatureRecover.so
@@ -89,10 +89,10 @@ lib/CMakeFiles/SignatureRecover.dir/build: lib/libSignatureRecover.so
 .PHONY : lib/CMakeFiles/SignatureRecover.dir/build
 
 lib/CMakeFiles/SignatureRecover.dir/clean:
-	cd "/home/cluster/Desktop/PLLAB/llvm-tutorial/llvm-course/llvm-metadata/Class 2/SignRecPass/lib" && $(CMAKE_COMMAND) -P CMakeFiles/SignatureRecover.dir/cmake_clean.cmake
+	cd "/home/cluster/Desktop/PLLAB/llvm-tutorial/llvm-course/llvm-metadata/Class 2/SignRecPass/build/lib" && $(CMAKE_COMMAND) -P CMakeFiles/SignatureRecover.dir/cmake_clean.cmake
 .PHONY : lib/CMakeFiles/SignatureRecover.dir/clean
 
 lib/CMakeFiles/SignatureRecover.dir/depend:
-	cd "/home/cluster/Desktop/PLLAB/llvm-tutorial/llvm-course/llvm-metadata/Class 2/SignRecPass" && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" "/home/cluster/Desktop/PLLAB/llvm-tutorial/llvm-course/llvm-metadata/Class 2/SignRecPass" "/home/cluster/Desktop/PLLAB/llvm-tutorial/llvm-course/llvm-metadata/Class 2/SignRecPass/lib" "/home/cluster/Desktop/PLLAB/llvm-tutorial/llvm-course/llvm-metadata/Class 2/SignRecPass" "/home/cluster/Desktop/PLLAB/llvm-tutorial/llvm-course/llvm-metadata/Class 2/SignRecPass/lib" "/home/cluster/Desktop/PLLAB/llvm-tutorial/llvm-course/llvm-metadata/Class 2/SignRecPass/lib/CMakeFiles/SignatureRecover.dir/DependInfo.cmake" --color=$(COLOR)
+	cd "/home/cluster/Desktop/PLLAB/llvm-tutorial/llvm-course/llvm-metadata/Class 2/SignRecPass/build" && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" "/home/cluster/Desktop/PLLAB/llvm-tutorial/llvm-course/llvm-metadata/Class 2/SignRecPass" "/home/cluster/Desktop/PLLAB/llvm-tutorial/llvm-course/llvm-metadata/Class 2/SignRecPass/lib" "/home/cluster/Desktop/PLLAB/llvm-tutorial/llvm-course/llvm-metadata/Class 2/SignRecPass/build" "/home/cluster/Desktop/PLLAB/llvm-tutorial/llvm-course/llvm-metadata/Class 2/SignRecPass/build/lib" "/home/cluster/Desktop/PLLAB/llvm-tutorial/llvm-course/llvm-metadata/Class 2/SignRecPass/build/lib/CMakeFiles/SignatureRecover.dir/DependInfo.cmake" --color=$(COLOR)
 .PHONY : lib/CMakeFiles/SignatureRecover.dir/depend
 

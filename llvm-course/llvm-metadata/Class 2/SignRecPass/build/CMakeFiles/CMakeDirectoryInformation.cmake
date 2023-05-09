@@ -3,7 +3,7 @@
 
 # Relative path conversion top directories.
 set(CMAKE_RELATIVE_PATH_TOP_SOURCE "/home/cluster/Desktop/PLLAB/llvm-tutorial/llvm-course/llvm-metadata/Class 2/SignRecPass")
-set(CMAKE_RELATIVE_PATH_TOP_BINARY "/home/cluster/Desktop/PLLAB/llvm-tutorial/llvm-course/llvm-metadata/Class 2/SignRecPass")
+set(CMAKE_RELATIVE_PATH_TOP_BINARY "/home/cluster/Desktop/PLLAB/llvm-tutorial/llvm-course/llvm-metadata/Class 2/SignRecPass/build")
 
 # Force unix paths in dependencies.
 set(CMAKE_FORCE_UNIX_PATHS 1)
